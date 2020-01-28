@@ -1,0 +1,3 @@
+/home/finn/CLionProjects/ProgrammierProjektC/TypeRacer-C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/finn/CLionProjects/ProgrammierProjektC/TypeRacer-C/cmake-build-debug/CMakeFiles/TypeRacer_C.dir
+/home/finn/CLionProjects/ProgrammierProjektC/TypeRacer-C/cmake-build-debug/CMakeFiles/edit_cache.dir
