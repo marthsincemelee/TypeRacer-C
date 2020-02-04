@@ -1,16 +1,41 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define CLEAR printf("\033[2J")
 
 int showMenue();
+
+
+struct highscore
+{
+    int timesNeeded;
+    char userName[10];
+
+};
+struct highscore highscores[11];
+void showHighscores();
+void bubblesort(struct highscore *array, int length);
+void createNewHighscore(int time){
+    struct highscore newHS;
+    newHS.timesNeeded = time;
+    printf("You needed %d seconds. \n "
+           "Please type your username:", time);
+    scanf("%s", &newHS.userName);
+    highscores[10] = newHS;
+    bubblesort(highscores, 11);
+
+};
+
 void checkInput(int input);
 
 int main() {
-    showMenue();
+//    showMenue();
+
+createNewHighscore(45);
+//createNewHighscore(23);
+
+showHighscores();
 
 
 
-CLEAR;
     return 0;
 }
 
@@ -30,7 +55,12 @@ int showMenue() {
     checkInput(input);
 }
 
-
+void showHighscores(){
+    printf("Current Highscores: \n");
+    for(int i =0; i < 10; i++){
+        printf("%d. %s: %d Sekunden. \n", i+1, highscores[i].userName, highscores[i].timesNeeded);
+    }
+}
 
 void checkInput(int input){
     if(input == 1) {
@@ -47,6 +77,49 @@ void checkInput(int input){
         scanf("%d", &newInput);
         checkInput(newInput);
     };
+}
+
+int compareHighscore(struct highscore h1, struct highscore h2) {
+
+    if(h1.timesNeeded == 0 || h2.timesNeeded == 0){
+        return 1;
+    }
+
+    if(h1.timesNeeded > h2.timesNeeded){
+        return 1;
+
+
+    } else if (h1.timesNeeded < h2.timesNeeded){
+        return -1;
+
+    } else if(h1.timesNeeded == h2.timesNeeded){
+        return 0;
+
+    }else{
+        return 73;
+    }
+
+
+
+}
+
+void bubblesort(struct highscore *array, int length) {
+    int i, j;
+    struct highscore tmp;
+
+    for (i = 1; i < length ; i++)
+    {
+        for (j = 0; j < length - i ; j++)
+        {
+
+            // h1 < h2
+            if (compareHighscore(array[j], array[j + 1]) == 1) {
+                tmp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = tmp;
+            }
+        }
+    }
 }
 
 
