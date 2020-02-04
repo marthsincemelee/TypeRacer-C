@@ -23,16 +23,17 @@ void createNewHighscore(int time){
     bubblesort(highscores, 11);
 
 };
+void initHighscores();
 
 void checkInput(int input);
 
 int main() {
-//    showMenue();
+    initHighscores();
+    createNewHighscore(45);
+ showMenue();
 
-createNewHighscore(45);
-//createNewHighscore(23);
 
-showHighscores();
+
 
 
 
@@ -54,10 +55,16 @@ int showMenue() {
     scanf("%d" ,&input);
     checkInput(input);
 }
+void initHighscores(){
+    for(int j = 0; j < 11; j++){
+        highscores[j].timesNeeded = 9999;
+    }
+}
 
 void showHighscores(){
     printf("Current Highscores: \n");
     for(int i =0; i < 10; i++){
+        if(highscores[i].timesNeeded != 9999)
         printf("%d. %s: %d Sekunden. \n", i+1, highscores[i].userName, highscores[i].timesNeeded);
     }
 }
@@ -65,7 +72,10 @@ void showHighscores(){
 void checkInput(int input){
     if(input == 1) {
     } else if (input == 2){
+        system("clear");
+    showHighscores();
 
+    printf("Press 1 to go back: ");
     } else if (input == 3){
 
         //do something
@@ -81,29 +91,17 @@ void checkInput(int input){
 
 int compareHighscore(struct highscore h1, struct highscore h2) {
 
-    if(h1.timesNeeded == 0 || h2.timesNeeded == 0){
+    if(h1.timesNeeded == 0 && h2.timesNeeded >0){
+        return 1;
+    }else if(h1.timesNeeded > h2.timesNeeded){
         return 1;
     }
-
-    if(h1.timesNeeded > h2.timesNeeded){
-        return 1;
-
-
-    } else if (h1.timesNeeded < h2.timesNeeded){
-        return -1;
-
-    } else if(h1.timesNeeded == h2.timesNeeded){
-        return 0;
-
-    }else{
-        return 73;
-    }
-
-
 
 }
 
 void bubblesort(struct highscore *array, int length) {
+
+
     int i, j;
     struct highscore tmp;
 
