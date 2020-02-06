@@ -1,5 +1,0 @@
-Time
-Date
-Today
-Yesterday
-Tomorrow

@@ -1,1 +1,0 @@
-/usr/bin/cc -g   CMakeFiles/TypeRacer_C.dir/main.c.o  -o TypeRacer_C 
