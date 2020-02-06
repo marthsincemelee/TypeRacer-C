@@ -11,6 +11,9 @@
 #debug folder
 cmake-build-debug/
 
+cmake-build-debug/
+
+
 # Linker output
 *.ilk
 *.map
