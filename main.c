@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#define ANZAHLWOERTER 5
+
+char wordToWrite[11];
 
 int showMenue();
 void wordImport();
@@ -71,17 +74,20 @@ void showHighscores(){
     printf("Current Highscores: \n");
     for(int i =0; i < 10; i++){
         if(highscores[i].timesNeeded != 9999)
-        printf("%d. %s: %d Sekunden. \n", i+1, highscores[i].userName, highscores[i].timesNeeded);
+            printf("%d. %s: %f Sekunden. \n", i+1, highscores[i].userName, highscores[i].timesNeeded);
     }
 }
 
 void checkInput(int input){
+    double time;
     if(input == 1) {
+        time = startGame();
+        createNewHighscore(time);
     } else if (input == 2){
         system("clear");
-    showHighscores();
+        showHighscores();
 
-    printf("Press 1 to go back: \n");
+        printf("Press 1 to go back: ");
     } else if (input == 3){
 
         //do something
@@ -93,8 +99,6 @@ void checkInput(int input){
         scanf("%d", &newInput);
         checkInput(newInput);
     };
-
-
 }
 
 int compareHighscore(struct highscore h1, struct highscore h2) {
@@ -131,7 +135,6 @@ void bubblesort(struct highscore *array, int length) {
 void wordImport()
 {
     FILE *datei;
-    char wort[11];
     time_t t;
     int zahl;
 
@@ -141,14 +144,53 @@ void wordImport()
     datei = fopen("TypeRacer.txt","r");
 
     for (int i=0; i<zahl; i++) {
-        fgets(wort, 10, datei);
-        //printf("Testausgabe: %s", wort);
+        fgets(wordToWrite, 10, datei);
     }
-
-    printf("%s", wort);
 
     fclose(datei);
 
 }
+
+double startGame() {
+
+
+    int i;
+    double diff_t;
+    char userinput[20], choose;
+    time_t begin,end;
+
+    time_t t;
+
+    srand((unsigned) time(&t));
+
+    printf("To start the game press space: \n");
+
+    do {
+        scanf("%c", &choose);
+    } while(choose != 10);
+
+    system("clear");
+
+    begin = time(NULL);
+
+    for (i = 1; i < 6; i++) {
+        system("clear");
+        wordImport();
+        printf("%s\n", wordToWrite);
+        do {
+            printf("type:\n");
+            scanf("%s", userinput);
+        } while (strcmp(userinput, wordToWrite) != 0);
+    }
+    end = time(NULL);
+
+    printf("You needed %.2f seconds to complete the test!", difftime(end, begin));
+
+    diff_t = difftime(end, begin);
+
+    return diff_t;
+}
+
+
 
 
