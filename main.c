@@ -4,6 +4,7 @@
 #include <string.h>
 
 int showMenue();
+void wordImport();
 
 
 struct highscore
@@ -123,6 +124,29 @@ void bubblesort(struct highscore *array, int length) {
             }
         }
     }
+}
+
+void wordImport()
+{
+    FILE *datei;
+    char wort[11];
+    time_t t;
+    int zahl;
+
+    srand((unsigned) time(&t));
+    zahl = (rand() % ANZAHLWOERTER) + 1;
+
+    datei = fopen("TypeRacer.txt","r");
+
+    for (int i=0; i<zahl; i++) {
+        fgets(wort, 10, datei);
+        //printf("Testausgabe: %s", wort);
+    }
+
+    printf("%s", wort);
+
+    fclose(datei);
+
 }
 
 
