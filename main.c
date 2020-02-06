@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#define ANZAHLWOERTER 5
+#include <string.h>
 
 int showMenue();
 void wordImport();
@@ -9,31 +9,33 @@ void wordImport();
 
 struct highscore
 {
-    int timesNeeded;
+    double timesNeeded;
     char userName[10];
 
 };
 struct highscore highscores[11];
 void showHighscores();
 void bubblesort(struct highscore *array, int length);
-void createNewHighscore(int time){
+void createNewHighscore(double time){
     struct highscore newHS;
     newHS.timesNeeded = time;
-    printf("You needed %d seconds. \n "
+    printf("You needed %f seconds. \n "
            "Please type your username:", time);
     scanf("%s", &newHS.userName);
     highscores[10] = newHS;
     bubblesort(highscores, 11);
 
 };
+
 void initHighscores();
 
 void checkInput(int input);
 
+double startGame();
+
 int main() {
     initHighscores();
     createNewHighscore(45);
-    wordImport();
     showMenue();
 
 
