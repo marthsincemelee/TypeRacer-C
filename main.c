@@ -34,7 +34,7 @@ int main() {
     initHighscores();
     createNewHighscore(45);
     wordImport();
- showMenue();
+    showMenue();
 
 
 
@@ -79,7 +79,7 @@ void checkInput(int input){
         system("clear");
     showHighscores();
 
-    printf("Press 1 to go back: ");
+    printf("Press 1 to go back: \n");
     } else if (input == 3){
 
         //do something
@@ -91,6 +91,8 @@ void checkInput(int input){
         scanf("%d", &newInput);
         checkInput(newInput);
     };
+
+
 }
 
 int compareHighscore(struct highscore h1, struct highscore h2) {
