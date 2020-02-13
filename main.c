@@ -16,9 +16,17 @@ struct highscore
     char userName[10];
 
 };
+
+
 struct highscore highscores[11];
 void showHighscores();
 void bubblesort(struct highscore *array, int length);
+
+/**
+ * Creates a new highscore, method is called when a game is finished. Will ask for a user name to save the highscore. 
+ * 
+ * @par double time is given to the method by the programm
+ */
 void createNewHighscore(double time){
     struct highscore newHS;
     newHS.timesNeeded = time;
@@ -50,7 +58,10 @@ int main() {
 }
 
 
-
+/**
+ * Will show the menue in the console and wait for the user to make his decision.
+ * 
+ */
 int showMenue() {
 
     int input;
@@ -64,12 +75,21 @@ int showMenue() {
     scanf("%d" ,&input);
     checkInput(input);
 }
+
+/**
+ * Initiates the Highscore list will read the highscores from the file and set all highscores to a specific value which wont be used (9999)
+ * 
+ */
 void initHighscores(){
     for(int j = 0; j < 11; j++){
         highscores[j].timesNeeded = 9999;
     }
 }
 
+
+/**
+ * Will be called to evaluate and show the highscore list
+ */
 void showHighscores(){
     printf("Current Highscores: \n");
     for(int i =0; i < 10; i++){
@@ -78,6 +98,10 @@ void showHighscores(){
     }
 }
 
+
+/**
+ * Checks the users input into the console, and redirectes to the choosen funtionallity of the programm
+ */
 void checkInput(int input){
     double time;
     if(input == 1) {
@@ -90,7 +114,9 @@ void checkInput(int input){
         printf("Press 1 to go back: ");
     } else if (input == 3){
 
-        //do something
+        printf("Thanks for playing the C-Version of Typeracer");
+        system("sleep 3");
+        system("exit");
     }else {
         system("clear");
         printf("Your input was incorrect. Please enter a valid number! \n");
@@ -100,7 +126,11 @@ void checkInput(int input){
         checkInput(newInput);
     };
 }
-
+/**
+ * Compares two highscores
+ * 
+ * @return returns 1 if the highscore needs to be moved up on the list
+ */ 
 int compareHighscore(struct highscore h1, struct highscore h2) {
 
     if(h1.timesNeeded == 0 && h2.timesNeeded >0){
@@ -111,6 +141,13 @@ int compareHighscore(struct highscore h1, struct highscore h2) {
 
 }
 
+
+/**
+ * Uses bubblesort in combination with the compareHighscore method to sort the list of highscores  
+ * 
+ * @par the highscore array the needs to be sorted depending on the gametype
+ * @par the length of the array 
+ */ 
 void bubblesort(struct highscore *array, int length) {
 
 
@@ -132,6 +169,10 @@ void bubblesort(struct highscore *array, int length) {
     }
 }
 
+
+/**
+ * imports the words for the game to be shown in the casual gamemode 
+ */ 
 void wordImport()
 {
     FILE *datei;
@@ -151,6 +192,12 @@ void wordImport()
 
 }
 
+
+/**
+ * Starts up a new game in standart gamemode
+ * 
+ * @return Returns the time needed by the user to complete the game.
+ */ 
 double startGame() {
 
 
