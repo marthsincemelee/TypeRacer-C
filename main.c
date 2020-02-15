@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#define ANZAHLWOERTER 50
+#define ANZAHLWOERTER 100
 
-char wordToWrite[11];
+char wordsToWrite[ANZAHLWOERTER][11];
 
 int showMenue();
 void wordImport();
@@ -39,15 +39,27 @@ void createNewHighscore(double time)
 
 void initHighscores();
 
+void exportHighscore();
+
+void importHighscore();
+
+
 void checkInput(int input);
 
 double startGame();
 
+
 int main()
 {
+
+    
+    wordImport();
+    //importHighscore();
+
     initHighscores();
-    createNewHighscore(45);
     showMenue();
+    //exportHighscore();
+
     return 0;
 }
 
@@ -81,6 +93,10 @@ void initHighscores()
     }
 }
 
+
+/**
+ * Called when the programm wants to give the option to go back to the main menue
+ */
 void backToMenue()
 {
 
@@ -200,21 +216,15 @@ void bubblesort(struct highscore *array, int length)
  */
 void wordImport()
 {
-    FILE *datei;
-    time_t t;
-    int zahl;
+    FILE *file_ptr = NULL;
+    file_ptr = fopen("TypeRacer.txt", "r");
 
-    srand((unsigned)time(&t));
-    zahl = (rand() % ANZAHLWOERTER) + 1;
-
-    datei = fopen("TypeRacer.txt", "r");
-
-    for (int i = 0; i < zahl; i++)
+    for (int i = 0; i < ANZAHLWOERTER; i++)
     {
-        fgets(wordToWrite, 10, datei);
+        fgets(wordsToWrite[i], 10, file_ptr);
     }
 
-    fclose(datei);
+   fclose(file_ptr);
 }
 
 /**
@@ -234,27 +244,27 @@ double startGame()
 
     srand((unsigned)time(&t));
 
-    printf("To start the game press space: \n");
+  /*  printf("To start the game press space: \n");
 
     do
     {
         scanf("%c", &choose);
     } while (choose != 10);
 
-    system("clear");
+    system("clear");*/
 
     begin = time(NULL);
 
     for (i = 1; i < 6; i++)
     {
-        system("clear");
+      //  system("clear");
         wordImport();
-        printf("%s\n", wordToWrite);
+        printf("%s\n", wordsToWrite);
         do
         {
             printf("type:\n");
-            scanf("%s", userinput);
-        } while (strcmp(userinput, wordToWrite) != 0);
+            scanf("%s", &userinput);
+        } while (strcmp(userinput, wordsToWrite) != 0);
     }
     end = time(NULL);
 
@@ -263,4 +273,17 @@ double startGame()
     diff_t = difftime(end, begin);
 
     return diff_t;
+}
+
+void exportHighscore(){
+    FILE *f = fopen("highscores.data", "wb");
+    fwrite(highscores, sizeof(char), sizeof(highscores), f);
+    fclose(f);
+}
+
+
+void importHighscore(){
+    FILE *ifp = fopen("highscores.data", "rb"); 
+    fread(highscores, sizeof(char), sizeof(highscores), ifp);
+    fclose(ifp);
 }
