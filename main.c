@@ -222,7 +222,7 @@ void wordImport()
             }
     }else
     {
-        exit("Filepointer was NULL");
+        
     }
     
 
@@ -270,19 +270,15 @@ void startGame()
 
             printf("Word No %d: %s\n", i+1, word);
             scanf("%s", temp);
-
-            if(strcmp(temp, word) == 0){
-                strcmpInt = 0;
-            }
             
-            while(strcmpInt != 0)
+            while(strcmp(temp,word) != 0)
             {
+                //while ((getchar())!= '\n');
+                
                 printf("Word No %d: %s\n", i+1, word);
                 scanf("%s", temp);
                 printf("value: %d\n", strcmp(temp,word));
-                if(strcmp(temp, word == 0)){
-                    strcmpInt = 0;
-                }
+
             }
         }
         end = time(NULL);
