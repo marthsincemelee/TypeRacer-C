@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <unistd.h>
 #define ANZAHLWOERTER 100
 
 char wordsToWrite[ANZAHLWOERTER][11];
@@ -54,11 +55,9 @@ int main()
 
     
     wordImport();
-    //importHighscore();
-
-    initHighscores();
+    importHighscore();
     showMenue();
-    //exportHighscore();
+    exportHighscore();
 
     return 0;
 }
@@ -159,10 +158,8 @@ void checkInput(int input)
     else
     {
         system("clear");
-        printf("Your input was incorrect. Please enter a valid number! \n");
-        int newInput;
-        scanf("%d", &newInput);
-        checkInput(newInput);
+        //printf("Your input was incorrect. Please enter a valid number! \n");
+        showMenue();
     };
 }
 /**
@@ -219,10 +216,18 @@ void wordImport()
     FILE *file_ptr = NULL;
     file_ptr = fopen("TypeRacer.txt", "r");
 
-    for (int i = 0; i < ANZAHLWOERTER; i++)
-    {
+
+    if(file_ptr != NULL){
+        for (int i = 0; i < ANZAHLWOERTER; i++)
+            {
         fgets(wordsToWrite[i], 10, file_ptr);
+            }
+    }else
+    {
+        exit("Filepointer was NULL");
     }
+    
+
 
    fclose(file_ptr);
 }
@@ -257,7 +262,7 @@ double startGame()
 
     for (i = 1; i < 6; i++)
     {
-      //  system("clear");
+        system("clear");
         wordImport();
         printf("%s\n", wordsToWrite);
         do
@@ -276,14 +281,28 @@ double startGame()
 }
 
 void exportHighscore(){
-    FILE *f = fopen("highscores.data", "wb");
+    FILE *f = fopen("highscores.txt", "w");
     fwrite(highscores, sizeof(char), sizeof(highscores), f);
     fclose(f);
 }
 
 
 void importHighscore(){
-    FILE *ifp = fopen("highscores.data", "rb"); 
-    fread(highscores, sizeof(char), sizeof(highscores), ifp);
-    fclose(ifp);
+
+
+    if(access("highscores.txt", F_OK) != -1){
+        FILE *ifp = fopen("highscores.txt", "r"); 
+        fread(highscores, sizeof(char), sizeof(highscores), ifp);
+        fclose(ifp);
+
+
+    }else
+    {
+        initHighscores();
+        exportHighscore();        
+    }
+
+    
+    
+
 }
