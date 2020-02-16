@@ -16,7 +16,7 @@ Das Projekt wird verschiedene Algorithmen beinhalten, welche vorallem zur Textve
 - Anzeigen eines Menüs
 - Spielen des Spiels
 - Anzeigen von geschafter Geschwindigkeit
-- Highscores anzeigen (ausgelagert in CSV-Liste)
+- Highscores anzeigen (ausgelagert in txt-Datei)
 
 
 Weiterhin lässt sich das Programm bei Bedarf durch eine GUI, oder einem Mehrspielermodus erweitern. 
