@@ -280,6 +280,10 @@ double startGame()
     return diff_t;
 }
 
+
+/**
+ * User to export the current highscore array into a txt file.
+ */ 
 void exportHighscore(){
     FILE *f = fopen("highscores.txt", "w");
     fwrite(highscores, sizeof(char), sizeof(highscores), f);
@@ -287,10 +291,14 @@ void exportHighscore(){
 }
 
 
+/**
+ * Checks if a highscores.txt file exists, then create a new one or imports the data into the game.
+ */ 
 void importHighscore(){
 
-
+    //Check if the file alreay exists
     if(access("highscores.txt", F_OK) != -1){
+        ///file exists
         FILE *ifp = fopen("highscores.txt", "r"); 
         fread(highscores, sizeof(char), sizeof(highscores), ifp);
         fclose(ifp);
@@ -298,6 +306,7 @@ void importHighscore(){
 
     }else
     {
+        // file does not exist
         initHighscores();
         exportHighscore();        
     }
