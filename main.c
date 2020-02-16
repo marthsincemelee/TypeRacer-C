@@ -3,9 +3,30 @@
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
-#define WORDCOUNT 100
+#define WORDCOUNT 155
 
-char wordsToWrite[WORDCOUNT][500];
+char *wordsToWrite[WORDCOUNT]={"Time","Date","Today","Yesterday","Tomorrow","motivation","commitment","television",
+                         "assumption","relinquish","accountant","difference","memorandum","proportion","prevalence",
+                         "democratic","vegetation","investment","simplicity","folk music","transition","obligation",
+                         "mainstream","possession","convulsion","multimedia","accessible","resolution","girlfriend",
+                         "profession","relaxation","repetition","withdrawal","presidency","earthquake","acceptable",
+                         "excavation","overcharge","homosexual","distortion","basketball","population","foundation",
+                         "stereotype","depression","allocation","conviction","disappoint","reflection","conception",
+                         "particular","systematic","inhabitant","right wing","illustrate","proportion","opposition",
+                         "confession","resolution","constraint","chimpanzee","appreciate","accessible","photograph",
+                         "vegetarian","straighten","leadership","production","commitment","homosexual","indication",
+                         "reputation","protection","conscience","hypnothize","folk music","philosophy","fastidious",
+                         "enthusiasm","redundancy","correction","accountant","conference","collection","mechanical",
+                         "productive","conviction","government","incredible","unpleasant","distribute","negligence",
+                         "relaxation","exhibition","dependence","plagiarize","gregarious","separation","exaggerate",
+                         "allocation","litigation","attachment","motivation","definition","temptation","negligence",
+                         "television","productive","mainstream","litigation","instrument","attachment","attractive",
+                         "settlement","excavation","innovation","appearance","hemisphere","initiative","appreciate",
+                         "convulsion","illustrate","plagiarize","conference","chauvinist","motivation","leadership",
+                         "understand","perception","expression","projection","confidence","straighten","substitute",
+                         "democratic","curriculum","assumption","conscience","foundation","collection","revolution",
+                         "renumerate","nomination","brilliance","government","folk music","reputation","federation",
+                         "psychology","distortion","redundancy","disability","possession","researcher","compliance"};
 
 int showMenue();
 void wordImport();
@@ -53,7 +74,7 @@ int main()
     int i;
     srand(time(0));
     
-    wordImport();
+    //wordImport();
     importHighscore();
     showMenue();
     exportHighscore();
@@ -222,7 +243,7 @@ void wordImport()
             }
     }else
     {
-        
+
     }
     
 
