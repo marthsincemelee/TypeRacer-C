@@ -93,7 +93,7 @@ int showMenue()
     printf("WELCOME TO TYPERACER-C! \n"
            "What do you want to do? \n"
            "1. Start new Game \n"
-           "2.Show highscores \n"
+           "2. Show highscores \n"
            "3. Quit game \n \n");
 
     scanf("%d", &input);
@@ -267,7 +267,7 @@ void startGame()
     printf("Please enter your username (Max 10 Characters!!!)...");
     scanf("%s", username);
     printf("Hi %s\n\n", username);
-    printf("Now you'll be presented with 50 words. Please type them as fast as possible\n");
+    printf("Now you'll be presented with 5 words. Please type them as fast as possible\n");
     printf("Type 'start' to start the game, type 'end' to quit\n");
     scanf("%s", temp);
     while(strcmp(temp, "start")!=0 && strcmp(temp, "end")!=0)
@@ -291,6 +291,7 @@ void startGame()
 
             printf("Word No %d: %s\n", i+1, word);
             scanf("%s", temp);
+            system("clear");
             
             while(strcmp(temp,word) != 0)
             {
@@ -299,6 +300,7 @@ void startGame()
                 printf("Word No %d: %s\n", i+1, word);
                 scanf("%s", temp);
                 printf("value: %d\n", strcmp(temp,word));
+                system("clear");
 
             }
         }
